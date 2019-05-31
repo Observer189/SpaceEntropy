@@ -13,11 +13,13 @@ public class BulletScript : MonoBehaviour
     float range;
     float coveredDistance;
     Vector2 lastPosition;
+    
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
        
     }
+    
     void Start()
     {
         coveredDistance = 0;

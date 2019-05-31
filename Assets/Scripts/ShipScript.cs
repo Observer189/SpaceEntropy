@@ -14,9 +14,11 @@ public class ShipScript : MonoBehaviour
     public float physDamage;
     public float explosiveDamage;
     public float energyDamage;
+    
     float timeAftLastShot;
     Vector2 movementVector;
     bool isShooting;
+    
     public GameObject bullet;
 
     int rotation;
@@ -46,7 +48,7 @@ public class ShipScript : MonoBehaviour
 
         if (Input.GetAxis("Vertical") > 0)
         {
-            movementVector.Set((float)(-Mathf.Sin(Mathf.Deg2Rad * body.rotation)), (float)(Mathf.Cos(Mathf.Deg2Rad * body.rotation)));//выставление нормального вектора движения
+            movementVector.Set(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));//выставление нормального вектора движения
         }
         else
         {
