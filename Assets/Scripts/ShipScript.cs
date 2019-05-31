@@ -11,6 +11,9 @@ public class ShipScript : MonoBehaviour
     public float range;
     public float maxSpeed;
     public float reloadTime;
+    public float physDamage;
+    public float explosiveDamage;
+    public float energyDamage;
     float timeAftLastShot;
     Vector2 movementVector;
     bool isShooting;
@@ -85,7 +88,7 @@ public class ShipScript : MonoBehaviour
 
                 bulletClone.GetComponent<Rigidbody2D>().position = new Vector2(body.position.x - 1 * Mathf.Sin(Mathf.Deg2Rad * body.rotation), body.position.y + 1 * Mathf.Cos(Mathf.Deg2Rad * body.rotation));//выставление позиции пули
 
-                bulletClone.GetComponent<BulletScript>().create(body.rotation, ammoSpeed, range, body.velocity);//Передача пуле ее характеристик 
+                bulletClone.GetComponent<BulletScript>().create(new Vector3(physDamage,explosiveDamage,energyDamage),body.rotation, ammoSpeed, range, body.velocity);//Передача пуле ее характеристик 
                 timeAftLastShot = 0;
             }
             

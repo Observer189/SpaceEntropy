@@ -6,6 +6,9 @@ public class BulletScript : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D body;
+    float physDamage;
+    float explosiveDamage;
+    float energyDamage;
     float startSpeed;
     float range;
     float coveredDistance;
@@ -29,16 +32,26 @@ public class BulletScript : MonoBehaviour
         lastPosition = body.position;
         if(coveredDistance>=range)//Уничтожение пули при прохождении расстояния стрельбы
         {
-            //Destroy(gameObject);
-            nullify();
-            
-            PoolManager.putGameObjectToPool(gameObject);
+            destroy();
            
         }
     }
-    public void create(float shipRotation,float startSpeed,float range,Vector2 shipVelocity)
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.tag == "Asteroid")
+        {
+            col.gameObject.GetComponent<AsteroidScript>().doDamage(physDamage,explosiveDamage,energyDamage);
+            destroy();
+        }
+        
+    } 
+    public void create(Vector3 damage,float shipRotation,float startSpeed,float range,Vector2 shipVelocity)
     {
         //Debug.Log(shipRotation);
+        physDamage = damage.x;
+        explosiveDamage = damage.y;
+        energyDamage = damage.z;
         this.startSpeed = startSpeed;
         this.range = range;
         body.rotation = shipRotation;
@@ -47,9 +60,18 @@ public class BulletScript : MonoBehaviour
     }
     void nullify()//Функция обнуления
     {
+        physDamage = 0;
+        explosiveDamage = 0;
+        energyDamage = 0;
         coveredDistance = 0;
         body.position = new Vector2(1000, 1000);
         body.velocity = new Vector2(0, 0);
 
+    }
+
+    void destroy()
+    {
+        nullify();
+        PoolManager.putGameObjectToPool(gameObject);
     }
 }

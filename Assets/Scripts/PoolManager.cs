@@ -43,6 +43,10 @@ public static class PoolManager
 
     public static void putGameObjectToPool(GameObject target)
     {
+        if (!poolsDictionary.ContainsKey(target.name))
+        {
+            poolsDictionary[target.name] = new LinkedList<GameObject>();
+        }
         poolsDictionary[target.name].AddFirst(target);
         
         target.transform.parent = deactivatedObjectsParent;
