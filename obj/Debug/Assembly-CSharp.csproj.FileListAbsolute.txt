@@ -1,3 +1,7 @@
 C:\Users\Sash\Unity Projects\Demo\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Sash\Unity Projects\Demo\obj\Debug\Assembly-CSharp.dll
 C:\Users\Sash\Unity Projects\Demo\obj\Debug\Assembly-CSharp.pdb
+C:\Users\ilya2\RiderProjects\SpaceEntropy\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\ilya2\RiderProjects\SpaceEntropy\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\ilya2\RiderProjects\SpaceEntropy\obj\Debug\Assembly-CSharp.dll
+C:\Users\ilya2\RiderProjects\SpaceEntropy\obj\Debug\Assembly-CSharp.pdb
