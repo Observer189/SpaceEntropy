@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidScript : MonoBehaviour,Destroyable
+public class AsteroidScript : MonoBehaviour, Destroyable
 {
     // Start is called before the first frame update
     Armor armor;
-    public float maxHp;
-    float hp;
+    public float maxHp;  //max health points
+    float hp;            //current health points
     Rigidbody2D body;
+
     void Start()
     {
         hp = maxHp;
-        armor=new SteelArmor();
+        armor = ScriptableObject.CreateInstance<SteelArmor>();
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -31,11 +32,12 @@ public class AsteroidScript : MonoBehaviour,Destroyable
         hp -= damage.x + damage.y + damage.z;
         Debug.Log(damage);
     }
+
     public void destroy()
     {
-        
         PoolManager.putGameObjectToPool(gameObject);
     }
+
     public void nullify()
     {
         body.velocity = new Vector2(0, 0);
