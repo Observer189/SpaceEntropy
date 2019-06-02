@@ -11,7 +11,6 @@ public static class PoolManager
     {
         deactivatedObjectsParent = pooledObjectsContainer;
         poolsDictionary = new Dictionary<string, LinkedList<GameObject>>();
-       
     }
 
     public static GameObject getGameObjectFromPool(GameObject prefab)
@@ -38,7 +37,6 @@ public static class PoolManager
 
             return result;
         }
-
     }
 
     public static void putGameObjectToPool(GameObject target)
@@ -47,13 +45,12 @@ public static class PoolManager
         {
             poolsDictionary[target.name] = new LinkedList<GameObject>();
         }
+
         poolsDictionary[target.name].AddFirst(target);
-        
+
         target.transform.parent = deactivatedObjectsParent;
         //здесь кордината еще (1000,1000)
         target.SetActive(false);
         //а здесь уже координата уничтоженя
-       
-       
     }
 }

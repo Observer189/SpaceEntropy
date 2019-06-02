@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BaseArmor : Armor
 {
-   
-    public override Vector3 reduceDamage(float physDamage,float explosiveDamage,float energyDamage)
+    public override Vector3 reduceDamage(float physDamage, float explosiveDamage, float energyDamage)
     {
-        float consistency=armorPoints/maxArmorPoints;
-        float pD;
-        float expD;
-        float enD = energyDamage * (1-energyReduce);
+        float consistency = armorPoints / maxArmorPoints;
+        float pD; //physical damage
+        float expD; //explosive damage
+        float enD = energyDamage * (1 - energyReduce); //energy damage
         if (consistency < 0.5f)
         {
             pD = physDamage - physReduce * (consistency / 0.5f);
         }
-        else 
+        else
         {
             pD = physDamage - physReduce;
         }
@@ -27,7 +24,7 @@ public class BaseArmor : Armor
         }
         else
         {
-            expD = explosiveDamage * (1-explosiveReduce);
+            expD = explosiveDamage * (1 - explosiveReduce);
             pD = 0;
             armorPoints -= physDamage;
         }

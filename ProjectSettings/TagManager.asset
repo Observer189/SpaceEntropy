@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pool
   - Asteroid
+  - Enemy
   layers:
   - Default
   - TransparentFX
