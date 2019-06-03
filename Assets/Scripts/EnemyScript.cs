@@ -1,4 +1,5 @@
 ﻿using System;
+using AIEvent;
 using UnityEngine;
 
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
@@ -61,22 +62,10 @@ public class EnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Angle = GettingAngle();
 
-        if (((Angle - 2) < transform.eulerAngles.z) && ((Angle + 2) > transform.eulerAngles.z))
-        {
-            EnemyRigidbody2D.angularVelocity = 0;
-            isShooting = true;
-            movementVector.Set(-Mathf.Sin(Mathf.Deg2Rad * EnemyRigidbody2D.rotation),
-                Mathf.Cos(Mathf.Deg2Rad * EnemyRigidbody2D.rotation));
-        }
-        else
-        {
-            Turning();
-            isShooting = false;
-            movementVector.Set(0, 0);
-        }
-
+        new EventScript(Player, GameObject.FindGameObjectWithTag("Enemy"));
+        
+        Turn();
         Move();
         Shoot();
     }
@@ -148,22 +137,36 @@ public class EnemyScript : MonoBehaviour
         return angle;
     }
 
-    void Turning()
-    {
-        if (rotation > 0)
-        {
-            EnemyRigidbody2D.angularVelocity = angularVelocity;
-        }
-        else if (rotation < 0)
-        {
-            EnemyRigidbody2D.angularVelocity = -angularVelocity;
-        }
-    }
-
     public static double RadToDeg(double radians)
     {
         double degrees = (180 / Math.PI) * radians;
         return (degrees);
+    }
+
+    void Turn()
+    {
+        Angle = GettingAngle();
+
+        if (((Angle - 2) < transform.eulerAngles.z) && ((Angle + 2) > transform.eulerAngles.z))
+        {
+            EnemyRigidbody2D.angularVelocity = 0;
+            isShooting = true;
+            movementVector.Set(-Mathf.Sin(Mathf.Deg2Rad * EnemyRigidbody2D.rotation),
+                Mathf.Cos(Mathf.Deg2Rad * EnemyRigidbody2D.rotation));
+        }
+        else
+        {
+            if (rotation > 0)
+            {
+                EnemyRigidbody2D.angularVelocity = angularVelocity;
+            }
+            else if (rotation < 0)
+            {
+                EnemyRigidbody2D.angularVelocity = -angularVelocity;
+            }
+            isShooting = false;
+            movementVector.Set(0, 0);
+        }
     }
 
     void Move()

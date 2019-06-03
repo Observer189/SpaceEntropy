@@ -63,6 +63,7 @@
     <Compile Include="Assets\Model\Armor.cs" />
     <Compile Include="Assets\Model\Armors\BaseArmor.cs" />
     <Compile Include="Assets\Model\Armors\SteelArmor.cs" />
+    <Compile Include="Assets\Scripts\AIEvent\EventScript.cs" />
     <Compile Include="Assets\Scripts\AsteroidScript.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
