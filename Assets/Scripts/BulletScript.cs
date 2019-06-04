@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : NetworkBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D body;
@@ -11,6 +12,7 @@ public class BulletScript : MonoBehaviour
     float energyDamage;
     float startSpeed;
     float range;
+    [SyncVar]
     float coveredDistance;
     Vector2 lastPosition;
 
@@ -26,7 +28,7 @@ public class BulletScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         coveredDistance += Mathf.Abs((body.position - lastPosition).magnitude); //Рассчет пройденного расстояния
         lastPosition = body.position;
@@ -34,13 +36,18 @@ public class BulletScript : MonoBehaviour
         {
             destroy();
         }
-    }
+    }*/
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.collider.CompareTag("Asteroid"))
         {
             col.gameObject.GetComponent<AsteroidScript>().doDamage(physDamage, explosiveDamage, energyDamage);
+            destroy();
+        }
+        else if (col.collider.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<ShipScript>().doDamage(physDamage, explosiveDamage, energyDamage);
             destroy();
         }
     }

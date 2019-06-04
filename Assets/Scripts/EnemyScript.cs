@@ -188,12 +188,11 @@ public class EnemyScript : MonoBehaviour
         {
             if (timeAftLastShot > reloadTime)
             {
-                GameObject bulletClone = PoolManager.getGameObjectFromPool(bullet); //получение ссылки на пулю из пула
-
-                bulletClone.GetComponent<Rigidbody2D>().position = new Vector2(
-                    EnemyRigidbody2D.position.x - 1 * Mathf.Sin(Mathf.Deg2Rad * EnemyRigidbody2D.rotation),
+                GameObject bulletClone = PoolManager.getGameObjectFromPool(bullet,EnemyRigidbody2D.position.x - 1 * Mathf.Sin(Mathf.Deg2Rad * EnemyRigidbody2D.rotation),
                     EnemyRigidbody2D.position.y +
-                    1 * Mathf.Cos(Mathf.Deg2Rad * EnemyRigidbody2D.rotation)); //выставление позиции пули
+                    1 * Mathf.Cos(Mathf.Deg2Rad * EnemyRigidbody2D.rotation)); //получение ссылки на пулю из пула
+
+                
 
                 bulletClone.GetComponent<BulletScript>().create(new Vector3(physDamage, explosiveDamage, energyDamage),
                     EnemyRigidbody2D.rotation, ammoSpeed, range,

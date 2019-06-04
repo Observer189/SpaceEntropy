@@ -30,7 +30,7 @@ public class AsteroidScript : MonoBehaviour, Destroyable
     {
         Vector3 damage = armor.reduceDamage(physDamage, explosiveDamage, energyDamage);
         hp -= damage.x + damage.y + damage.z;
-        Debug.Log(damage);
+        //Debug.Log(damage);
     }
 
     public void destroy()
